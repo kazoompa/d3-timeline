@@ -36,12 +36,8 @@
     }
   </style>
   <script type="text/javascript">
+
     window.onload = function() {
-      var testData = [
-        {times: [{"starting_time": 1355752800000, "ending_time": 1355759900000}, {"starting_time": 1355767900000, "ending_time": 1355774400000}]},
-        {times: [{"starting_time": 1355759910000, "ending_time": 1355761900000}, ]},
-        {times: [{"starting_time": 1355761910000, "ending_time": 1355763910000}]}
-      ];
 
       var rectAndCircleTestData = [
         {times: [{"starting_time": 1355752800000,
@@ -97,9 +93,29 @@
         {times: [{"starting_time": 1355761910000, "ending_time": 1355763910000}]}
       ];
 
+      var ds1 = new Date(2012, 0, 1).getTime();
+      var de1 = new Date(2013, 6, 1).getTime();
+
+      var ds2 = new Date(2013, 6, 5).getTime();
+      var de2 = new Date(2016, 0, 1).getTime();
+
+      var ds3 = new Date(2012, 6, 5).getTime();
+      var de3 = new Date(2012, 7, 11).getTime();
+
+      var testData = [
+        {times: [{"starting_time": ds1, "ending_time": de1}, {"starting_time": ds2, "ending_time": de2}]},
+        // {times: [{"starting_time": 1355752800000, "ending_time": 1355759900000}, {"starting_time": 1355767900000, "ending_time": 1355774400000}]},
+        // {times: [{"starting_time": 1355759910000, "ending_time": 1355761900000}, ]},
+        // {times: [{"starting_time": 1355761910000, "ending_time": 1355763910000}]}
+      ];
+
       var width = 500;
       function timelineRect() {
-        var chart = d3.timeline();
+        var chart = d3.timeline().tickFormat( //
+          {format: d3.time.format("%Y"),
+            tickTime: d3.time.years,
+            tickInterval: 1,
+            tickSize: 10});
 
         var svg = d3.select("#timeline1").append("svg").attr("width", width)
           .datum(testData).call(chart);
@@ -115,7 +131,7 @@
       function timelineCircle() {
         var chart = d3.timeline()
           .tickFormat( //
-            {format: d3.time.format("%I %p"),
+            {format: d3.time.format("%Y"),
             tickTime: d3.time.hours,
             tickInterval: 1,
             tickSize: 30})
@@ -272,20 +288,20 @@
       }
 
       timelineRect();
-      timelineRectNoAxis();
-      timelineCircle();
-      timelineRectAndCircle();
-      timelineHover();
-      timelineStackedIcons();
-      timelineLabelColor();
-      timelineRotatedTicks();
-      timelineRectColors();
-      timelineRectColorsPerTime();
-      timelineRelativeTime();
-      timelineAxisTop();
-      timelineBgndTick();
-      timelineBgnd();
-      timelineComplex();
+      // timelineRectNoAxis();
+      // timelineCircle();
+      // timelineRectAndCircle();
+      // timelineHover();
+      // timelineStackedIcons();
+      // timelineLabelColor();
+      // timelineRotatedTicks();
+      // timelineRectColors();
+      // timelineRectColorsPerTime();
+      // timelineRelativeTime();
+      // timelineAxisTop();
+      // timelineBgndTick();
+      // timelineBgnd();
+      // timelineComplex();
     }
   </script>
 </head>
